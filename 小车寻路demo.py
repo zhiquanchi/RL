@@ -114,7 +114,7 @@ class MapWindow(QtWidgets.QWidget):
     # 绘制地图
     def paintEvent(self, event):
         self.painter = QtGui.QPainter(self)
-        self.painter.drawPixmap(0, 0,self.Qpixmap) # DEBUG
+        self.painter.drawPixmap(0, 0,self.painter) # DEBUG
 
     # 初始化环境
     def init_environment(self):

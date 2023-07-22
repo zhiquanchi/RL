@@ -1,3 +1,4 @@
+from PyQt5 import QtGui,QtWidgets,QtCore
 from pprint import pprint
 class CliffWalkingEnv:
     """ Cliff Walking环境"""
@@ -29,5 +30,14 @@ class CliffWalkingEnv:
         return P
     
 c = CliffWalkingEnv()
+
+class widget(QtWidgets,CliffWalkingEnv):
+    def __init__(self) -> None:
+        super().__init__(QtWidgets)
+        self.paintEvent
+    
+    def paintEvent(self,event):
+        CliffWalkingEnv.createP()
+
 for i in range(1):
     pprint(c.createP())

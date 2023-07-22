@@ -29,9 +29,9 @@ class GridWorld(QWidget):
         self.start_pos = start_pos
         self.end_pos = end_pos
         self.path_list = path_list
-        self.epsilon = 0.1
+        self.epsilon = 1
         self.alpha = 0.5
-        self.gamma = 1.0
+        self.gamma = 0.5
         self.q_table = {}
         self.current_pos = start_pos
 
@@ -43,7 +43,7 @@ class GridWorld(QWidget):
 
         # 设置定时器，用于不断更新界面
         self.timer = QTimer(self)
-        self.timer.timeout.connect(self.update)
+        self.timer.timeout.connect()
         self.timer.start(100)
 
     # 给定一个状态，返回对应的行动（使用 epsilon-greedy 策略）
@@ -102,7 +102,7 @@ class GridWorld(QWidget):
         painter.fillRect(PADDING + (self.end_pos[0] + 1) * CELL_SIZE, PADDING + (self.end_pos[1] + 1) * CELL_SIZE, CELL_SIZE, CELL_SIZE, COLOR_END)
 
         # 绘制小车
-        painter.fillRect(PADDING + (self.current_pos[0] + 1) * CELL_SIZE, PADDING + (self.current_pos[1] + 1) * CELL_SIZE, CELL_SIZE, CELL_SIZE, QColor(0, 0, 255))
+        painter.fillRect(PADDING + (self.current_pos[0] + 1) * CELL_SIZE, PADDING + (self.current_pos[1] + 1) * CELL_SIZE, CELL_SIZE, CELL_SIZE, QColor(128, 128, 255))
         
 
 
@@ -127,7 +127,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     
     # 定义路线图（黄色代表路线）
-    path_list = [(1, 1), (2, 1), (3, 1), (3, 2), (3, 3), (4, 3), (5, 3), (5, 2), (5, 1), (6, 1), (7, 1), (8, 1)]
+    path_list = [(1, 1), (2, 1), (3, 1), (3, 2), (3, 3),(2,3),(2,4), (4, 3), (5, 3), (5, 2), (5, 1), (6, 1), (7, 1), (8, 1)]
     
     # 定义起点和终点
     start_pos = (0, 0)
@@ -153,5 +153,4 @@ if __name__ == "__main__":
     
     # 显示界面
     world.show()
-    world.update()
     sys.exit(app.exec_())
